@@ -1,0 +1,9 @@
+BASE_TASK_CONFIG_PATH: VLN_CE/habitat_extensions/config/vlnce_task_navid_rxr.yaml
+EVAL:
+    IDENTIFICATION: rxr
+    SPLIT: val_unseen
+    EARLY_STOP_ROTATION: 25
+    EARLY_STOP_STEPS: 500
+    # Add an early stopping criterion may accelerate evaluation. It could result in a slight performance drop.
+
+

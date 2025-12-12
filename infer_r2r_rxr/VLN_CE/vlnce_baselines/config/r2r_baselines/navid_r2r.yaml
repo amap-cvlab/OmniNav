@@ -1,0 +1,10 @@
+BASE_TASK_CONFIG_PATH: VLN_CE/habitat_extensions/config/vlnce_task_navid_r2r.yaml
+EVAL:
+    IDENTIFICATION: r2r
+    SPLIT: val_unseen
+    # any num greater than the actual episode count evals every episode
+    EARLY_STOP_ROTATION: 25
+    EARLY_STOP_STEPS: 400
+
+
+

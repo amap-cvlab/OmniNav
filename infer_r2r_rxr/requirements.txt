@@ -1,0 +1,2 @@
+habitat-lab==0.1.7
+habitat-sim==0.1.7

@@ -1,6 +1,6 @@
 # OmniNav: A Unified Framework for Prospective Exploration and Visual-Language Navigation
 
-[![Home Page](https://img.shields.io/badge/OmniNav-blue.svg)]()
+[![Home Page](https://img.shields.io/badge/OmniNav-blue.svg)](https://astra-amap.github.io/omininav.github.io/)
 [![arXiv](https://img.shields.io/badge/Arxiv-2509.25687-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2509.25687)
 
 ## 🔥 Latest News!!

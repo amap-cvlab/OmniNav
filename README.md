@@ -5,9 +5,10 @@
 
 ## 🔥 Latest News!!
 * December 11, 2025: We release the training code as well as the fast system (vision-only) inference code for the R2R, RxR, and OVON benchmarks.
+* December 30, 2025: We release the slow-fast collaboration system inference code for OVON benchmark.
 
 ## Coming Soon
-* The slow-fast collaboration system inference code
+* The slow-fast collaboration system inference checkpoint
 
 ## Quickstart
 ### 🧰 Installation
@@ -53,15 +54,23 @@ pip install -e .
 ### ⚡ Inference
 ● r2r & rxr
 ``` sh
+● visual_only
 cd infer_r2r_rxr
 bash eval_r2r.sh
 bash eval_rxr.sh
 ```
 ● ovon
 ``` sh
+● visual_only
 cd infer_ovon
 bash eval_ovon.sh
+
+● frontier based slow-fast 
+cd infer_ovon_slowfast
+bash eval_ovon_slowfast
+
 ```
+
 
 ### ⚡ Training
 ``` sh
@@ -81,5 +90,5 @@ If you find this repository useful, please consider giving a star ⭐ and citati
 ```
 
 ## Acknowledgments
-Thanks to [Navid](https://github.com/jzhzhang/NaVid-VLN-CE), [MTU3D](https://github.com/MTU3D/MTU3D), and [Ovon](https://github.com/naokiyokoyama/ovon) for open-sourcing the construction of training data and the closed-loop inference code. Their contributions have significantly enriched the open-source community.
+Thanks to [NaVid](https://github.com/jzhzhang/NaVid-VLN-CE), [MTU3D](https://github.com/MTU3D/MTU3D), and [OVON](https://github.com/naokiyokoyama/ovon) for open-sourcing the construction of training data and the closed-loop inference code. Their contributions have significantly enriched the open-source community.
 

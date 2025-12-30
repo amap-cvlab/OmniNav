@@ -1,0 +1,10 @@
+
+default_agent: 0
+allow_sliding: false
+seed: 1
+scene_dataset_config_file: './data/scene_datasets/hm3d/hm3d_annotated_basis.scene_dataset_config.json'  #included in hm3d dataset
+scene: null
+agent_height: 1.41
+agent_radius: 0.17
+agent_max_climb: 0.1
+cell_height: 0.05

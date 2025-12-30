@@ -1,0 +1,27 @@
+rgb_sensor:
+  width: 720
+  height: 640
+  hfov: 110
+  position: [0, 0.7, 0]
+RGB_SENSOR_LEFT:
+  width: 720
+  height: 640
+  hfov: 110
+  position: [0, 0.7, 0]
+  ORIENTATION: [0, 1.5707963, 0]
+RGB_SENSOR_RIGHT:
+  width: 720
+  height: 640
+  hfov: 110
+  position: [0, 0.7, 0]
+  ORIENTATION: [0, -1.5707963, 0]
+depth_sensor:
+  width: 360
+  height: 640
+  hfov: 110
+  position: [0, 0.6, 0]
+height: 1.41
+radius: 0.17
+turn_angle: 30.0
+tilt_angle: 30.0
+step_size: 0.25

@@ -1,0 +1,13 @@
+torch==2.7.0
+torchvision==0.22.0
+torchaudio==2.7.0
+accelerate==1.6.0
+numpy==1.23.5
+opencv-python==4.11.0.86
+pillow==11.2.1
+qwen-vl-utils==0.0.11
+safetensors==0.5.3
+scipy==1.13.1
+sentencepiece==0.1.99
+timm==0.6.13
+tqdm==4.67.1

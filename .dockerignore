@@ -1,0 +1,14 @@
+.git
+.github
+.idea
+.vscode
+**/__pycache__
+**/*.py[cod]
+**/*.log
+.DS_Store
+data/
+datasets/
+checkpoints/
+models/
+outputs/
+wandb/

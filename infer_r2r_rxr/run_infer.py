@@ -7,6 +7,19 @@ from VLN_CE.vlnce_baselines.config.default import get_config
 from agent.waypoint_agent import evaluate_agent
 
 
+def str_to_bool(value):
+    if isinstance(value, bool):
+        return value
+    normalized = value.strip().lower()
+    if normalized in {"1", "true", "yes", "on"}:
+        return True
+    if normalized in {"0", "false", "no", "off"}:
+        return False
+    raise argparse.ArgumentTypeError(
+        f"expected a boolean value, got {value!r}"
+    )
+
+
 def main():
     parser = argparse.ArgumentParser()
 
@@ -52,11 +65,20 @@ def main():
 
     )
 
+    parser.add_argument(
+        "--flow-match",
+        type=str_to_bool,
+        default=False,
+        help="whether to use the Flow Matching waypoint inference branch",
+    )
+
     args = parser.parse_args()
     run_exp(**vars(args))
 
 
-def run_exp(exp_config: str, split_num: str, split_id: str, model_path: str, result_path: str, opts=None) -> None:
+def run_exp(
+        exp_config: str, split_num: int, split_id: int, model_path: str,
+        result_path: str, flow_match: bool = False, opts=None) -> None:
     """Runs experiment given mode and config
 
     Args:
@@ -71,9 +93,19 @@ def run_exp(exp_config: str, split_num: str, split_id: str, model_path: str, res
     dataset.episodes.sort(key=lambda ep: ep.episode_id)
     
     np.random.seed(42)
-    dataset_split = dataset.get_splits(split_num)[split_id]
+    dataset_split = dataset.get_splits(
+        split_num,
+        allow_uneven_splits=True,
+    )[split_id]
     with torch.no_grad():
-        evaluate_agent(config, split_id, dataset_split, model_path, result_path)
+        evaluate_agent(
+            config,
+            split_id,
+            dataset_split,
+            model_path,
+            result_path,
+            flow_match_enabled=flow_match,
+        )
 
 
 if __name__ == "__main__":

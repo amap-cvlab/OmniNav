@@ -5,6 +5,7 @@
 CHUNKS=1
 GPUS=(0)
 MODEL_PATH="./data/checkpoint-x"  #replace the checkpoint path here
+FLOW_MATCH=${FLOW_MATCH:-true}
 
 #ovon pano
 CONFIG_PATH="ovon/configs/ovon_pano.yaml"
@@ -20,7 +21,8 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
         --split-num $CHUNKS \
         --split-id $IDX \
         --model-path $MODEL_PATH \
-        --result-path $SAVE_PATH &
+        --result-path $SAVE_PATH \
+        --flow-match "$FLOW_MATCH" &
 done
 
 wait

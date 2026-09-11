@@ -5,6 +5,7 @@ EVAL:
     # any num greater than the actual episode count evals every episode
     EARLY_STOP_ROTATION: 25
     EARLY_STOP_STEPS: 400
-
+    NAVMESH_TARGET_SCENE: oLBMNvg9in8
+    NAVMESH_TARGET_CELL_HEIGHT: 0.1
 
 

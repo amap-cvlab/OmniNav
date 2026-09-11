@@ -1,10 +1,10 @@
-flow_match = False
 import json
 import numpy as np
 
 try:
     from habitat import Env
     from habitat.core.agent import Agent
+    import habitat_sim
     import imageio
     from habitat.utils.visualizations import maps
 except:
@@ -41,7 +41,12 @@ def get_model_name_from_path(model_path):
     return '/'.join(model_path.split('/')[-3:])
 
 
-def evaluate_agent(config, split_id, dataset, model_path, result_path) -> None:
+def evaluate_agent(
+        config, split_id, dataset, model_path, result_path,
+        flow_match_enabled=False) -> None:
+    global flow_match
+    flow_match = bool(flow_match_enabled)
+
     env = Env(config.TASK_CONFIG, dataset)
 
     model_name = get_model_name_from_path(model_path)
@@ -57,9 +62,44 @@ def evaluate_agent(config, split_id, dataset, model_path, result_path) -> None:
     target_key = {"distance_to_goal", "success", "spl", "path_length", "oracle_success"}
 
     count = 0
+    target_navmesh_scene = config.EVAL.NAVMESH_TARGET_SCENE
+    target_navmesh_cell_height = config.EVAL.NAVMESH_TARGET_CELL_HEIGHT
+    last_navmesh_scene = None
 
     for _ in trange(num_episodes, desc=config.EVAL.IDENTIFICATION + "-{}".format(split_id)):
         obs = env.reset()
+        current_scene = str(env.current_episode.scene_id)
+        if current_scene != last_navmesh_scene:
+            if target_navmesh_scene and target_navmesh_scene in current_scene:
+                navmesh_settings = habitat_sim.NavMeshSettings()
+                navmesh_settings.set_defaults()
+                navmesh_settings.agent_radius = config.TASK_CONFIG.SIMULATOR.AGENT_0.RADIUS
+                navmesh_settings.agent_height = config.TASK_CONFIG.SIMULATOR.AGENT_0.HEIGHT
+                navmesh_settings.cell_height = target_navmesh_cell_height
+                success = env._sim.recompute_navmesh(
+                    env._sim.pathfinder,
+                    navmesh_settings,
+                    include_static_objects=False,
+                )
+                if not success:
+                    raise RuntimeError(
+                        f"Failed to recompute NavMesh for target scene {current_scene}"
+                    )
+                print(
+                    f"[NAVMESH_OVERRIDE_TARGET] scene={current_scene} "
+                    f"cell_height={navmesh_settings.cell_height} "
+                    f"cell_size={navmesh_settings.cell_size} "
+                    f"radius={navmesh_settings.agent_radius} "
+                    f"height={navmesh_settings.agent_height}",
+                    flush=True,
+                )
+            else:
+                print(
+                    f"[NAVMESH_DEFAULT] scene={current_scene} "
+                    f"target={target_navmesh_scene}",
+                    flush=True,
+                )
+            last_navmesh_scene = current_scene
         iter_step = 0
         agent.reset()
 

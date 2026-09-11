@@ -4,6 +4,7 @@
 [![arXiv](https://img.shields.io/badge/Arxiv-2509.25687-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2509.25687)
 
 ## 🔥 Latest News!!
+* September 11, 2026: We release the Flow Matching checkpoints for the R2R, RxR, and OVON benchmarks.
 * February 12, 2026: We release the slow-fast collaboration system inference checkpoint for OVON benchmark.
 * December 30, 2025: We release the slow-fast collaboration system inference code for OVON benchmark.
 * December 11, 2025: We release the training code as well as the fast system (vision-only) inference code for the R2R, RxR, and OVON benchmarks.
@@ -62,38 +63,67 @@ For OVON, follow the same Docker setup but build a separate image using our
 provided Habitat-Sim `v0.2.3` and Habitat-Lab `v0.2.3_waypoint`.
 
 ### 🎁 Model
-| Models                                  |                       Download Link                                           |
-|-----------------------------------------|-------------------------------------------------------------------------------|
-| Visual-only for r2r, rx2 & ovon         | [ModelScope](https://www.modelscope.ai/models/chongchongjj/OmniNav/)
-| Slow-fast collaboration system for ovon | [ModelScope](https://www.modelscope.ai/models/chongchongjj/OmniNav_Slowfast/)
+| Models                                          | Download Link                                                                  |
+|-------------------------------------------------|--------------------------------------------------------------------------------|
+| Flow Matching for r2r, rxr & ovon (Visual-only) | [ModelScope](https://www.modelscope.ai/models/chongchongjj/OmniNav_Flow/)
+| Action Former for r2r, rxr & ovon (Visual-only) | [ModelScope](https://www.modelscope.ai/models/chongchongjj/OmniNav/)
+| Slow-fast collaboration system for ovon         | [ModelScope](https://www.modelscope.ai/models/chongchongjj/OmniNav_Slowfast/)
 
 
 
 ### ⚡ Inference
 ● r2r & rxr
-``` sh
-● visual_only
-cd infer_r2r_rxr
-bash eval_r2r.sh
-bash eval_rxr.sh
-```
-● ovon
-``` sh
-● visual_only
-cd infer_ovon
-bash eval_ovon.sh
 
-● frontier based slow-fast 
+Both the Flow Matching branch and the Action Former branch are
+supported. Set `MODEL_PATH` to the corresponding checkpoint before running.
+
+```sh
+cd infer_r2r_rxr
+
+# Flow Matching (default)
+FLOW_MATCH=true bash eval_r2r.sh
+FLOW_MATCH=true bash eval_rxr.sh
+
+# Action Former
+FLOW_MATCH=false bash eval_r2r.sh
+FLOW_MATCH=false bash eval_rxr.sh
+```
+
+● ovon
+
+Both the Flow Matching branch and the Action Former branch are
+supported. Set `MODEL_PATH` to the corresponding checkpoint before running.
+
+```sh
+cd infer_ovon
+
+# Flow Matching (default)
+FLOW_MATCH=true bash eval_ovon.sh
+
+# Action Former
+FLOW_MATCH=false bash eval_ovon.sh
+
+# Frontier-based slow-fast
 cd infer_ovon_slowfast
 bash eval_ovon_slowfast
-
 ```
 
 
 ### ⚡ Training
-``` sh
+
+#### Action Former
+```sh
 cd train_code
 bash run_train_demo.sh
+```
+
+#### Flow Matching
+
+`train_demo_flow.sh` 仅展示 Flow Matching 训练配置。运行前修改脚本中的 `data`、`model_path` 和 `output_dir`；示例数据路径需自行替换为包含 `norm` 统计量的 Flow 训练数据，不能直接使用原有的 `waypoint_train_demo.json`。
+
+```sh
+cd train_code
+bash train_demo_flow.sh
 ```
 
 ## 🏛️ Citation

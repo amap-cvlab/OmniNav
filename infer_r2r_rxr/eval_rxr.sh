@@ -3,6 +3,7 @@
 CHUNKS=6
 MODEL_PATH="./data/checkpoint-x"
 GPUS=(1 5 6 7 8 9)
+FLOW_MATCH=${FLOW_MATCH:-true}
 
 #RxR
 CONFIG_PATH="./data/rxr_pano.yaml"
@@ -17,8 +18,8 @@ for IDX in $(seq 0 $((CHUNKS-1))); do
         --split-num $CHUNKS \
         --split-id $IDX \
         --model-path $MODEL_PATH \
-        --result-path $SAVE_PATH &
+        --result-path $SAVE_PATH \
+        --flow-match "$FLOW_MATCH" &
 done
 
 wait
-

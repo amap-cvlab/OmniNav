@@ -54,7 +54,11 @@ def get_model_name_from_path(model_path):
     return '/'.join(model_path.split('/')[-3:])
 
 
-def evaluate_agent_ovon(config, split_id, dataset, model_path, result_path) -> None:
+def evaluate_agent_ovon(
+        config, split_id, dataset, model_path, result_path,
+        flow_match_enabled=False) -> None:
+    global flow_match
+    flow_match = bool(flow_match_enabled)
     env = Env(config, dataset)
     # obs = env.reset()
     model_name = get_model_name_from_path(model_path)

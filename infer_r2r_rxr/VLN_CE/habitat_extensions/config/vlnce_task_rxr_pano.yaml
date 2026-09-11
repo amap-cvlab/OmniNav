@@ -4,6 +4,7 @@ SIMULATOR:
   ACTION_SPACE_CONFIG: v0
   AGENT_0:
     SENSORS: [RGB_SENSOR_FRONT,RGB_SENSOR_LEFT,RGB_SENSOR_RIGHT,RGB_SENSOR_BACK]
+    HEIGHT: 0.88
   FORWARD_STEP_SIZE: 0.25
   TURN_ANGLE: 30
   HABITAT_SIM_V0:
@@ -14,7 +15,7 @@ SIMULATOR:
     HEIGHT: 640
     HFOV: 110
     TYPE: HabitatSimRGBSensor
-    POSITION: [0, 0.5, 0]
+    POSITION: [0, 0.88, 0]
     UUID: front
 
   RGB_SENSOR_LEFT:
@@ -22,7 +23,7 @@ SIMULATOR:
     HEIGHT: 640
     HFOV: 110
     TYPE: HabitatSimRGBSensor
-    POSITION: [0, 0.5, 0]
+    POSITION: [0, 0.88, 0]
     ORIENTATION: [0, 1.5707963, 0]
     UUID: left
 
@@ -31,7 +32,7 @@ SIMULATOR:
     HEIGHT: 640
     HFOV: 110
     TYPE: HabitatSimRGBSensor
-    POSITION: [0, 0.5, 0]
+    POSITION: [0, 0.88, 0]
     ORIENTATION: [0, -1.5707963, 0]
     UUID: right
 
@@ -40,7 +41,7 @@ SIMULATOR:
     HEIGHT: 640
     HFOV: 110
     TYPE: HabitatSimRGBSensor
-    POSITION: [0, 0.5, 0]
+    POSITION: [0, 0.88, 0]
     ORIENTATION: [0, 3.1415926, 0]
     UUID: back
 

@@ -37,6 +37,8 @@ _C.EVAL.SAVE_RESULTS = True
 _C.EVAL.EVAL_NONLEARNING = False
 _C.EVAL.NONLEARNING = CN()
 _C.EVAL.NONLEARNING.AGENT = "RandomAgent"
+_C.EVAL.NAVMESH_TARGET_SCENE = ""
+_C.EVAL.NAVMESH_TARGET_CELL_HEIGHT = 0.1
 
 # ----------------------------------------------------------------------------
 # INFERENCE CONFIG

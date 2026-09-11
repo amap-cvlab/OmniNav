@@ -70,7 +70,7 @@ TASK:
   SPL:
     SUCCESS_DISTANCE: 3.0
   NDTW:
-    GT_PATH: ./data/dataset/R2R_VLNCE_v1-3_preprocessed/val_unseen/val_unseen.json.gz
+    GT_PATH: ./data/dataset/R2R_VLNCE_v1-3_preprocessed/val_unseen/val_unseen_gt.json.gz
 DATASET:
   TYPE: VLN-CE-v1
   SPLIT: val_unseen

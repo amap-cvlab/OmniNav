@@ -119,7 +119,7 @@ bash run_train_demo.sh
 
 #### Flow Matching
 
-`train_demo_flow.sh` 仅展示 Flow Matching 训练配置。运行前修改脚本中的 `data`、`model_path` 和 `output_dir`；示例数据路径需自行替换为包含 `norm` 统计量的 Flow 训练数据，不能直接使用原有的 `waypoint_train_demo.json`。
+`train_demo_flow.sh` demonstrates the Flow Matching training configuration. Before running, update `data`, `model_path`, and `output_dir` in the script. Replace the example dataset path with your own Flow Matching training data containing `norm` statistics; the original `waypoint_train_demo.json` cannot be used directly.
 
 ```sh
 cd train_code

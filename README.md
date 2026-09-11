@@ -24,6 +24,7 @@ Install Training dependencies:
 # Ensure torch >= 2.6.0
 cd train_code
 pip install -r requirements.txt
+pip install flash-attn==2.7.4.post1 --no-build-isolation
 ```
 
 Install habitat-sim and habitat-lab for inference
